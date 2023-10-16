@@ -1,6 +1,6 @@
 package br.com.fescfafic.gestao.Model;
 
-public abstract class Gestor {
+public class Gestor {
     public Fornecedor[] listaDeFornecedores;
 
     public Gestor(int limiteDeFornecedores) {
@@ -8,18 +8,50 @@ public abstract class Gestor {
     }
 
     public void cadastrarFornecedor(Fornecedor fornecedor) {
-        System.out.printf("Cadastrando o fornecedor");
+        for (int i = 0; i < this.listaDeFornecedores.length; i++) {
+            if (this.listaDeFornecedores[i] == null) {
+                this.listaDeFornecedores[i] = fornecedor;
+                return;
+            }
+        }
+        System.out.printf("Nao foi possivel cadastrar um novo fornecedor, quantidade maxima atingida.");
     }
-    public void buscarProdutoPorNome(Produto produto) {
-        System.out.printf("Buscando o produto por nome");
+    public void buscarProdutoPorNome(String nomeDoProduto, Estoque estoque) {
+        boolean encontrado = false;
+        System.out.printf("Produto(s) encontrado(s) com o termo \"%s\" no nome: ", nomeDoProduto);
+        for (int i = 0; i < estoque.listaDeProdutosEstoque.length; i++) {
+            if (estoque.listaDeProdutosEstoque[i] != null && estoque.listaDeProdutosEstoque[i].nome.equalsIgnoreCase(nomeDoProduto)) {
+                System.out.printf("\n - %s", estoque.listaDeProdutosEstoque[i].nome);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+            System.out.printf("Nenhum.");
+        }
     }
-    public void buscarProdutoPorID(int id) {
-        System.out.printf("Buscando o produto por id");
+    public void buscarProdutoPorID(String id, Estoque estoque) {
+        boolean encontrado = false;
+        System.out.printf("Produto(s) encontrado(s) com o ID \"%d\": ", id);
+        for (int i = 0; i < estoque.listaDeProdutosEstoque.length; i++) {
+            if (estoque.listaDeProdutosEstoque[i] != null && estoque.listaDeProdutosEstoque[i].idDoProduto.equalsIgnoreCase(id)) {
+                System.out.printf("\n - %s", estoque.listaDeProdutosEstoque[i].nome);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+            System.out.printf("Nenhum.");
+        }
     }
     public void exibirInfoFornecedor(String cnpj) {
-        System.out.printf("Exibindo informacoes do fornecedor");
+        for (int i = 0; i < this.listaDeFornecedores.length; i++) {
+            if (this.listaDeFornecedores[i] != null && this.listaDeFornecedores[i].cnpj.equalsIgnoreCase(cnpj)) {
+                this.listaDeFornecedores[i].exibirInfo();
+                return;
+            }
+        }
+        System.out.printf("Nao foi encontrado nenhum fornecedor com esse CNPJ.");
     }
-    public void exibirInfoProduto(int idDoProduto) {
-        System.out.printf("Exibindo informacoes do produto");
+    public void exibirInfoProduto(Produto produto) {
+        produto.exibirInfo();
     }
 }

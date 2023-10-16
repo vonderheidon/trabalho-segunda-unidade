@@ -7,11 +7,34 @@ public abstract class Estoque {
         this.listaDeProdutosEstoque = new Produto[limiteDeProdutos];
     }
 
-    public boolean verificarDisponibilidade() {
-        return true;
+    public void verificarDisponibilidade(Produto produto) {
+        if (verificarExistencia(produto) == true) {
+            if (produto.qtdEstoque > 0) {
+                System.out.printf("Quantidade em estoque do produto %s: %d unidade(s).", produto.nome, produto.qtdEstoque);
+            } else {
+                System.out.printf("Esse produto esta esgotado.");
+            }
+        } else {
+            System.out.printf("Esse produto ainda nao foi cadastrado no estoque.");
+        }
+    }
+    public boolean verificarExistencia(Produto produto) {
+        for (int i = 0; i < this.listaDeProdutosEstoque.length; i++) {
+            if (this.listaDeProdutosEstoque[i] == produto) {
+                return true;
+            }
+        }
+        return false;
     }
     public void adicionarProduto(Produto produto) {
-        System.out.printf("Adicionando produto");
+        if (verificarExistencia(produto)) {
+            produto.qtdEstoque += produto.qtdEstoque;
+            System.out.printf("Produto adicionado.");
+        } else {
+            for (int i = 0; i < this.listaDeProdutosEstoque.length; i++) {
+
+            }
+        }
     }
     public void atualizarProduto(Produto produto) {
         System.out.printf("Atualizando produto");
