@@ -11,12 +11,12 @@ public class Main {
                 "Abacaxi Coral",
                 "Doce como mel",
                 4,
-                200
+                2
         );
-        EstoqueDeFrutas estoqueDeFrutas = new EstoqueDeFrutas(400);
-        estoqueDeFrutas.verificarDisponibilidade(abacaxi);
-        System.out.println();
+        EstoqueDeFrutas estoqueDeFrutas = new EstoqueDeFrutas(2);
+
         estoqueDeFrutas.adicionarProduto(abacaxi);
+        System.out.println();
         estoqueDeFrutas.verificarDisponibilidade(abacaxi);
         System.out.println();
     }

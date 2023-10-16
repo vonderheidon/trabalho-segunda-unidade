@@ -27,14 +27,7 @@ public abstract class Estoque {
         return false;
     }
     public void adicionarProduto(Produto produto) {
-        if (verificarExistencia(produto)) {
-            produto.qtdEstoque += produto.qtdEstoque;
-            System.out.printf("Produto adicionado.");
-        } else {
-            for (int i = 0; i < this.listaDeProdutosEstoque.length; i++) {
-
-            }
-        }
+        System.out.printf("Adicionando produto");
     }
     public void atualizarProduto(Produto produto) {
         System.out.printf("Atualizando produto");

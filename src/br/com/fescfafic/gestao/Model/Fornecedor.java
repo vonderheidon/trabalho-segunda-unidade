@@ -15,4 +15,14 @@ public abstract class Fornecedor {
         System.out.printf("Nome: %s", this.nome);
         System.out.printf("\nCNPJ: %s", this.cnpj);
     }
+    public void cadastrarProduto(Produto produto) {
+        for (int i = 0; i < this.listaDeProdutosFornecidos.length; i++) {
+            if (this.listaDeProdutosFornecidos[i] == null) {
+                this.listaDeProdutosFornecidos[i] = produto;
+                System.out.printf("Produto %s cadastrado com sucesso.", produto.nome);
+                return;
+            }
+        }
+        System.out.printf("Nao foi possivel cadastrar o produto %s, limite maximo de produtos fornecidos atingido.", produto.nome);
+    }
 }
