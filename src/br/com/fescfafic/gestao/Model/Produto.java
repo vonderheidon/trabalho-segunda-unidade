@@ -19,7 +19,7 @@ public abstract class Produto {
         System.out.printf("ID: %s", this.idDoProduto);
         System.out.printf("\nNome: %s", this.nome);
         System.out.printf("\nDescricao: %s", this.descricao);
-        System.out.printf("\nPreco: %f", this.preco);
+        System.out.printf("\nPreco: R$ %.2f", this.preco);
         System.out.printf("\nQuantidade em estoque: %d", this.qtdEstoque);
     }
 }
