@@ -27,7 +27,18 @@ public abstract class Estoque {
         return false;
     }
     public void adicionarProduto(Produto produto) {
-        System.out.printf("Adicionando produto");
+        if (verificarExistencia(produto) == true) {
+            System.out.printf("Esse produto ja esta cadastrado, tente atualizar as informacoes.");
+        } else {
+            for (int i = 0; i < this.listaDeProdutosEstoque.length; i++) {
+                if (this.listaDeProdutosEstoque[i] == null) {
+                    this.listaDeProdutosEstoque[i] = produto;
+                    System.out.printf("O produto %s foi adicionado com sucesso.", produto.nome);
+                    return;
+                }
+            }
+            System.out.printf("Nao foi possivel adicionar o produto, o estoque ja atingiu sua capacidade maxima.");
+        }
     }
     public void atualizarProduto(Produto produto) {
         System.out.printf("Atualizando produto");
